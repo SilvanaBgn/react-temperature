@@ -1,7 +1,7 @@
 function Field(props) {
 
   function handleInputChange(e) {
-    props.handleTemperature(e.target.value);
+    props.handleTemp(e.target.value);
   }
 
   return (

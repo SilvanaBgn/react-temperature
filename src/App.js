@@ -1,14 +1,8 @@
 import { useState } from 'react';
 import Field from './components/Field';
 import BoilingStatus from './components/BoilingStatus';
+import {toCelsius, toFahrenheit} from './utils/TempUnits'
 
-function toCelsius(fahrenheit) {
-  return (fahrenheit - 32) * 5 / 9;
-}
-
-function toFahrenheit(celsius) {
-  return (celsius * 9 / 5) + 32;
-}
 
 // function tryConvert(temperature, convertFunction) {
 //   const input = parseFloat(temperature);
@@ -22,32 +16,38 @@ function toFahrenheit(celsius) {
 
 function App() {
   console.log('App');
-  const [tempC, setTempC] = useState(0);
+  const [temp, setTemp] = useState({ value: 0, scale: 'c'});
 
-  function updateTemp(newTempC) {
-    setTempC((prevTempC) => {
-      if(prevTempC !== newTempC) {
-        return newTempC;
+  function updateTemp(pNewTemp, pScale) {
+    setTemp((prevTemp) => {
+      if(prevTemp.value !== pNewTemp) {
+        return {
+          value: pNewTemp,
+          scale: pScale
+        }
       }
     });
   }
 
   function handleTempCelsius(newTempC) {
-    console.log('Celsius newTempC', newTempC);
-    updateTemp(newTempC);
+    console.log('Celsius newTemp', newTempC);
+    updateTemp(newTempC, 'c');
   }
   function handleTempFahrenheit(newTempF) {
-    console.log('Farenheit newTemp', newTempF);
-    updateTemp(toCelsius(newTempF));
+    console.log('Fahrenheit newTemp', newTempF);
+    updateTemp(newTempF, 'f');
   }
+
+  const celsius = temp.scale === 'c' ? temp.value : toCelsius(temp.value);
+  const fahrenheit = temp.scale === 'f' ? temp.value : toFahrenheit(temp.value);
 
   return (
     <section className="App">
       <h1>Temperature</h1>
       <p><i>Lifting up the children state with Hooks</i></p>
-      <Field unitName = "Celsius" tempValue = {tempC} handleTemperature = {handleTempCelsius} />
-      <Field unitName = "Fahrenheit" tempValue = {toFahrenheit(tempC)} handleTemperature = {handleTempFahrenheit} />
-      <BoilingStatus celsiusTemperature = {tempC}/>
+      <Field unitName = "Celsius" tempValue = {celsius} handleTemp = {handleTempCelsius} />
+      <Field unitName = "Fahrenheit" tempValue = {fahrenheit} handleTemp = {handleTempFahrenheit} />
+      <BoilingStatus celsiusTemperature = {celsius}/>
     </section>
   );
 }
