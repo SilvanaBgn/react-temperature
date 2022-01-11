@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Field from './components/Field';
+import Field from './components/TemperatureField';
 import BoilingStatus from './components/BoilingStatus';
 import {toCelsius, toFahrenheit} from './utils/TempUnits'
 
@@ -38,15 +38,23 @@ function App() {
     updateTemp(newTempF, 'f');
   }
 
-  const celsius = temp.scale === 'c' ? temp.value : toCelsius(temp.value);
-  const fahrenheit = temp.scale === 'f' ? temp.value : toFahrenheit(temp.value);
+  let celsius, fahrenheit;
+  if(temp.scale === 'c') {
+    celsius = temp.value;
+    fahrenheit = toFahrenheit(temp.value);
+  } else {
+    fahrenheit = temp.value;
+    celsius = toCelsius(temp.value);
+  }
+  // const celsius = temp.scale === 'c' ? temp.value : toCelsius(temp.value);
+  // const fahrenheit = temp.scale === 'f' ? temp.value : toFahrenheit(temp.value);
 
   return (
     <section className="App">
       <h1>Temperature</h1>
       <p><i>Lifting up the children state with Hooks</i></p>
-      <Field unitName = "Celsius" tempValue = {celsius} handleTemp = {handleTempCelsius} />
-      <Field unitName = "Fahrenheit" tempValue = {fahrenheit} handleTemp = {handleTempFahrenheit} />
+      <Field scaleName = "Celsius" tempValue = {celsius} handleTemp = {handleTempCelsius} />
+      <Field scaleName = "Fahrenheit" tempValue = {fahrenheit} handleTemp = {handleTempFahrenheit} />
       <BoilingStatus celsiusTemperature = {celsius}/>
     </section>
   );
