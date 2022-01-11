@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/react-temperature/static/js/main.fa023f9d.js",
+    "index.html": "/react-temperature/index.html",
+    "main.fa023f9d.js.map": "/react-temperature/static/js/main.fa023f9d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.fa023f9d.js"
+  ]
+}
