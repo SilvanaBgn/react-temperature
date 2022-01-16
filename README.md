@@ -4,7 +4,7 @@
 
 This is a ReactJS project, with simple temperature Celsius/Farenheit UI, to test lifting the state up between children and manage crossed events.
 
-**You can RUN THE PROJECT**: go to this url []()
+**You can RUN THE PROJECT**: go to this url [https://silvanabgn.github.io/react-temperature/](https://silvanabgn.github.io/react-temperature/)
 
 # Motivation
 
@@ -14,7 +14,7 @@ I wanted to create a page with React using Hooks to test lifting the state up be
 
 - ReactJS - create-react-app
 - React basic hooks (useState/useEffect)
-- Event between parent/children
+- State and event between parent/children
 
 # Development section
 

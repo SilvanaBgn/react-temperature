@@ -1,13 +1,18 @@
-const isBoiling = (celsiusTemperature) => {
-  return celsiusTemperature >= 100;
+import { BOIL_TEMPERATURE } from "../utils/TempUnits";
+
+const isBoilingMessage = (temp, scale) => {
+  if(temp >= BOIL_TEMPERATURE[scale]) {
+    return 'Water IS boiling'
+  }
+  return 'There is still no heat to boil the water';
 }
 
 function BoilingStatus(props) {
   console.log('BoilingStatus');
+  const {value: tempValue, scale} = props.tempState;
 
-  const boils = isBoiling(props.celsiusTemperature);
   return (
-    <p><b>{ boils ? 'Water IS boiling': 'There is still no heat to boil the water' }</b></p>
+    <p><b>{ isBoilingMessage (tempValue, scale) }</b></p>
   )
 }
 
