@@ -21,8 +21,9 @@ function TemperatureField(props) {
   return (
     <fieldset>
        <legend>Enter temperature in {props.scaleName}:</legend>
-       <input value = {getValue(props.tempState)}
-              onChange = {handleInputChange} ></input>
+       <input value={getValue(props.tempState)}
+              type="number"
+              onChange={handleInputChange} ></input>
     </fieldset>
   )
 }
